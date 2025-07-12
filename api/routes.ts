@@ -21,7 +21,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       console.log(`[${new Date().toISOString()}] Testing analysis with prompt: ${prompt}`);
       
-      const { analyzePromptResponse } = await import('./services/openai');
+      const { analyzePromptResponse } = await import('./services/openai.js');
       const result = await analyzePromptResponse(prompt);
       
       console.log(`[${new Date().toISOString()}] Test analysis completed successfully`);
@@ -278,7 +278,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log(`[${new Date().toISOString()}] Analyzing brand URL: ${url}`);
 
       // Use OpenAI to analyze the brand and find competitors
-      const { analyzeBrandAndFindCompetitors } = await import("./services/openai");
+      const { analyzeBrandAndFindCompetitors } = await import("./services/openai.js");
       const competitors = await analyzeBrandAndFindCompetitors(url);
       
       console.log(`[${new Date().toISOString()}] Found ${competitors.length} competitors for ${url}`);
@@ -299,7 +299,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Generate diverse topics and prompts using OpenAI
-      const { generatePromptsForTopic } = await import("./services/openai");
+      const { generatePromptsForTopic } = await import("./services/openai.js");
 
       // Get existing topics from database or generate new ones dynamically
       const existingTopics = await storage.getTopics();
@@ -313,7 +313,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }));
       } else {
         // Generate new topics dynamically based on brand analysis
-        const { generateDynamicTopics } = await import("./services/openai");
+        const { generateDynamicTopics } = await import("./services/openai.js");
         const newTopics = await generateDynamicTopics(
           brandUrl, 
           settings.numberOfTopics - existingTopics.length,
