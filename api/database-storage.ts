@@ -10,7 +10,7 @@ import {
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, count, sql } from "drizzle-orm";
-import { IStorage } from "./storage";
+import { IStorage } from "./storage.js";
 
 export class DatabaseStorage implements IStorage {
   constructor() {

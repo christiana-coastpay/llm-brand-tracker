@@ -1,6 +1,6 @@
-import { storage } from "../storage";
-import { analyzePromptResponse, generatePromptsForTopic } from "./openai";
-import { scrapeBrandWebsite, generateTopicsFromContent, extractDomainFromUrl, extractUrlsFromText } from "./scraper";
+import { storage } from "../storage.js";
+import { analyzePromptResponse, generatePromptsForTopic } from "./openai.js";
+import { scrapeBrandWebsite, generateTopicsFromContent, extractDomainFromUrl, extractUrlsFromText } from "./scraper.js";
 import type { 
   InsertPrompt, 
   InsertResponse, 

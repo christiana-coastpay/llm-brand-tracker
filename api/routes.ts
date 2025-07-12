@@ -1,8 +1,8 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { analyzer, BrandAnalyzer, stopCurrentAnalysis, getCurrentProgress } from "./services/analyzer";
-import { generatePromptsForTopic } from "./services/openai";
+import { storage } from "./storage.js";
+import { analyzer, BrandAnalyzer, stopCurrentAnalysis, getCurrentProgress } from "./services/analyzer.js";
+import { generatePromptsForTopic } from "./services/openai.js";
 import { insertPromptSchema, insertResponseSchema } from "@shared/schema";
 
 // Store active analysis sessions
