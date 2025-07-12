@@ -22,7 +22,7 @@ import {
   type TopicAnalysis,
   type CompetitorAnalysis,
   type SourceAnalysis
-} from "@shared/schema";
+} from "../shared/schema.js";
 
 export interface IStorage {
   // Topics

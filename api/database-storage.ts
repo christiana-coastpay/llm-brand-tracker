@@ -7,7 +7,7 @@ import {
   Analytics, InsertAnalytics,
   TopicAnalysis, CompetitorAnalysis, SourceAnalysis,
   topics, prompts, responses, competitors, sources, analytics
-} from "@shared/schema";
+} from "../shared/schema.js";
 import { db } from "./db";
 import { eq, desc, count, sql } from "drizzle-orm";
 import { IStorage } from "./storage.js";
