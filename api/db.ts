@@ -3,11 +3,11 @@ const { Pool } = pkg;
 import { drizzle } from 'drizzle-orm/node-postgres';
 import * as schema from "../shared/schema.js";
 
-if (!process.env.DATABASE_URL) {
-  throw new Error(
-    "DATABASE_URL must be set. Did you forget to provision a database?",
-  );
-}
+export let db = null;
 
-export const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-export const db = drizzle({ client: pool, schema });
+if (process.env.DATABASE_URL) {
+  const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+  db = drizzle({ client: pool, schema });
+} else {
+  console.warn("⚠️ DATABASE_URL not set — running in memory-only mode.");
+}
