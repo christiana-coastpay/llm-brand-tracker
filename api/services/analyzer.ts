@@ -8,7 +8,7 @@ import type {
   TopicAnalysis,
   CompetitorAnalysis,
   SourceAnalysis 
-} from "@shared/schema";
+} from "../../shared/schema.js";
 
 export interface AnalysisProgress {
   status: 'initializing' | 'scraping' | 'generating_prompts' | 'testing_prompts' | 'analyzing' | 'complete' | 'error';

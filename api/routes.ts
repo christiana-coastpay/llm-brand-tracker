@@ -544,7 +544,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Analysis Progress - Get current progress
   app.get("/api/analysis/progress", async (req, res) => {
     try {
-      const { getCurrentProgress } = await import('./services/analyzer');
+      const { getCurrentProgress } = await import('./services/analyzer.js');
       const progress = await getCurrentProgress();
       res.json(progress);
     } catch (error) {
@@ -556,7 +556,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Cancel analysis
   app.post("/api/analysis/cancel", async (req, res) => {
     try {
-      const { stopCurrentAnalysis } = await import('./services/analyzer');
+      const { stopCurrentAnalysis } = await import('./services/analyzer.js');
       stopCurrentAnalysis();
       res.json({ 
         success: true, 
@@ -586,7 +586,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Start analysis in background
       setTimeout(async () => {
         try {
-          const { analyzer } = await import('./services/analyzer');
+          const { analyzer } = await import('./services/analyzer.js');
           analyzer.progressCallback = progressCallback;
           analyzer.setBrandName(brandName.trim());
           if (brandUrl) {
