@@ -29,26 +29,28 @@ app.get("/api/test", (req, res) => {
 });
 
 // Brand analysis endpoint - the working version!
-app.post("/api/analyze-brand", async (req, res) => {
-  try {
-    const { url } = req.body;
-    
-    if (!url) {
-      return res.status(400).json({ error: "URL is required" });
-    }
+  app.post("/api/analyze-brand", async (req, res) => {
+    try {
+      const { url } = req.body;
+      
+      if (!url) {
+        return res.status(400).json({ error: "URL is required" });
+      }
 
-    // Mock response that was working
-    res.json({ 
-      competitors: [
-        { name: "Test Competitor 1", url: "https://example.com" },
-        { name: "Test Competitor 2", url: "https://example2.com" }
-      ]
-    });
-  } catch (error) {
-    console.error("Error analyzing brand:", error);
-    res.status(500).json({ error: "Failed to analyze brand" });
-  }
-});
+      console.log(`[${new Date().toISOString()}] Analyzing brand URL: ${url}`);
+
+      // Use OpenAI to analyze the brand and find competitors
+      const { analyzeBrandAndFindCompetitors } = await import("./services/openai");
+      const competitors = await analyzeBrandAndFindCompetitors(url);
+      
+      console.log(`[${new Date().toISOString()}] Found ${competitors.length} competitors for ${url}`);
+
+      res.json({ competitors });
+    } catch (error) {
+      console.error("Error analyzing brand:", error);
+      res.status(500).json({ error: "Failed to analyze brand" });
+    }
+  });
 
 // Mock endpoints to prevent 404s
 app.get("/api/metrics", (req, res) => {
